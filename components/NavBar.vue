@@ -1,20 +1,25 @@
 <template>
   <!-- Component -->
-  <div v-if="$auth.loggedIn" class="navbar-component">
+  <div v-if="!$auth.loggedIn" class="navbar-component">
     <!-- Class `area` is a container -->
     <div class="navbar area">
       <!-- Logo -->
       <NuxtLink to="/" class="brand">
-        <img src="@/assets/images/logo.png" alt="" srcset="">
+        <img src="@/assets/images/logo.png" alt="" srcset="" />
       </NuxtLink>
 
       <!-- List of links -->
       <nav role="navigation" id="navigation" class="list">
         <NuxtLink to="/" class="item -link">Home</NuxtLink>
         <NuxtLink to="/products" class="item -link">Cardápio</NuxtLink>
-        <NuxtLink to="/" class="item -link">Carrinho</NuxtLink>
+        <NuxtLink to="/shoppingbag" class="item -link">
+          Carrinho
+          <span class="badge badge-danger badge-pill">0</span>
+        </NuxtLink>
         <NuxtLink to="/" class="item -link">Sobre</NuxtLink>
-        <NuxtLink to="/" class="item -link" v-on:click="$auth.logout()">Logout</NuxtLink>
+        <NuxtLink to="/" class="item -link" v-on:click="$auth.logout()"
+          >Logout</NuxtLink
+        >
         <span class="item"><i class="fa fa-search"></i></span>
       </nav>
       <!-- Button to toggle the display menu  -->
@@ -28,7 +33,7 @@
   <div v-else class="navbar-component">
     <div class="navbar area">
       <NuxtLink to="/" class="brand">
-        <img src="@/assets/images/logo.png" alt="" srcset="">
+        <img src="@/assets/images/logo.png" alt="" srcset="" />
       </NuxtLink>
 
       <nav role="navigation" id="navigation" class="list">
@@ -241,5 +246,12 @@ $navbar-item-active-border: #673ab7;
       border-bottom-color: $navbar-item-active-border;
     }
   }
+}
+
+.badge {
+  border-radius: 50%;
+  margin-left: -5px;
+  margin-top: 20px;
+  position: absolute;
 }
 </style>
