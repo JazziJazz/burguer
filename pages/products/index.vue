@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <section class="products">
-      <ul class="product">
-        <li class="product-image">
+      <ul v-for="n in 15" class="product">
+        <li  class="product-image">
           <img src="@/assets/images/hamburguer.jpg" />
         </li>
         <li class="product-title">Hambúrguer dos Deuses</li>
@@ -24,8 +24,13 @@ export default Vue.extend({});
 
 <style lang="scss" scoped>
 .products {
-  height: calc(100vh + 220px);
+  min-height: calc(100vh + 220px);
   text-align: center;
+
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: auto;
+
+  display: grid;
 }
 
 .product {
@@ -36,7 +41,6 @@ export default Vue.extend({});
   padding: 20px;
   margin-top: 40px;
   box-shadow: 2px 5px 15px 0.05px black;
-  display: grid;
 
   .product-image {
     padding: 0;
