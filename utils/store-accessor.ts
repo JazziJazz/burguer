@@ -1,12 +1,12 @@
 import { Store } from "vuex";
 import { getModule } from "vuex-module-decorators";
 
-import UserLogin from "@/store/user-login";
+import Market from "@/store/market";
 
-let exampleUser: UserLogin;
+let market: Market;
 
 function initializeStores(store: Store<any>): void {
-  exampleUser = getModule(UserLogin, store);
+  market = getModule(Market, store);
 }
 
-export { initializeStores, exampleUser };
+export { initializeStores, market };
