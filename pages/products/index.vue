@@ -1,15 +1,32 @@
 <template>
   <div class="container">
     <section class="products">
-      <ul v-for="n in 15" class="product">
-        <li  class="product-image">
-          <img src="@/assets/images/hamburguer.jpg" />
+      <ul v-for="product in $all" :key="product.id" class="product">
+        <li class="product-image">
+          <img v-bind:src="product.url" />
         </li>
-        <li class="product-title">Hambúrguer dos Deuses</li>
-        <li class="product-price">(R$ 27,60)</li>
-        <li class="product-description">O hamburguer que levou o prêmio de melhor hambúrguer de São Paulo durante seis décadas consecutivas. O cheiro, a aparência e o sabor são experiências únicas que são marcadas de maneira permanente no paladar dos nossos clientes.</li>
+        <li class="product-title">{{ product.title }}</li>
+        <li class="product-price">(R$ {{ product.price.toFixed(2) }})</li>
+        <li class="product-description">
+          {{ product.description }}
+        </li>
         <li class="product-button">
-          <b-button block pill variant="primary">Add to bag</b-button>
+          <b-button
+            v-if="!isInBag(product)"
+            block
+            pill
+            variant="primary"
+            v-on:click="addToBag(product)"
+            >Add to bag</b-button
+          >
+          <b-button
+            v-else
+            block
+            pill
+            variant="danger"
+            v-on:click="removeFromBag(product)"
+            >Remove from bag</b-button
+          >
         </li>
       </ul>
     </section>
@@ -18,8 +35,34 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { market } from "@/store";
+import { Product } from "~/models";
 
-export default Vue.extend({});
+export default Vue.extend({
+  async asyncData() {
+    await market.index();
+  },
+  computed: {
+    $all: function () {
+      return market.$all;
+    },
+    $productsInBag: function () {
+      return market.$productsInBag;
+    }
+  },
+  methods: {
+    addToBag: function (product: Product) {
+      product.quantity = 1;
+      market.addToBag(product);
+    },
+    removeFromBag: function (product: Product) {
+      market.removeFromBag(product);
+    },
+    isInBag: function (product: Product) {
+      return this.$productsInBag.find((element) => element.id === product.id);
+    }
+  }
+});
 </script>
 
 <style lang="scss" scoped>
@@ -35,12 +78,14 @@ export default Vue.extend({});
 
 .product {
   background-color: whitesmoke;
-  height: 640px;
+  min-height: 640px;
   width: 250px;
   list-style: none;
   padding: 20px;
   margin-top: 40px;
   box-shadow: 2px 5px 15px 0.05px black;
+
+  display: table;
 
   .product-image {
     padding: 0;
@@ -67,10 +112,7 @@ export default Vue.extend({});
   .product-description {
     margin: 20px auto;
     text-align: left;
-  }
-
-  .product-button {
-      background-color: whitesmoke;
+    height: 288px;
   }
 }
 </style>

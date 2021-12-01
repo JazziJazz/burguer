@@ -14,7 +14,11 @@
         <NuxtLink to="/products" class="item -link">Cardápio</NuxtLink>
         <NuxtLink to="/shoppingbag" class="item -link">
           Carrinho
-          <span class="badge badge-danger badge-pill">0</span>
+          <span
+            v-if="$productsInBag.length > 0"
+            class="badge badge-danger badge-pill"
+            >{{ $productsInBag.length }}</span
+          >
         </NuxtLink>
         <NuxtLink to="/" class="item -link">Sobre</NuxtLink>
         <NuxtLink to="/" class="item -link" v-on:click="$auth.logout()"
@@ -51,6 +55,19 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+import { market } from "@/store";
+
+export default Vue.extend({
+  computed: {
+    $productsInBag: function () {
+      return market.$productsInBag;
+    }
+  }
+});
+</script>
 
 <style lang="scss" scoped>
 // Importações

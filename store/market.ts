@@ -1,28 +1,82 @@
-import { Module, VuexModule } from "vuex-module-decorators";
+import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
+import { Product } from "@/models";
+import { $axios } from "~/utils/nuxt-instance";
+import Store from "@/store/Store";
 
 @Module({
   name: "market",
   namespaced: true,
-  stateFactory: true
+  stateFactory: true,
+  store: Store
 })
 export default class Market extends VuexModule {
-  products = 23;
+  private products = new Array() as Product[];
+  private productsInBag = new Array() as Product[];
 
-  // @Mutation
-  // FILL_PRODUCTS(object: Object): any {
-  //   return this.products
-  // }
+  public get $all() {
+    return this.products;
+  }
 
-  // @Action({ commit: "FILL_PRODUCTS" })
-  // fillProducts(): any {
-  //   let myObject = {"name": "Oloco", "description": "nosfa", "price": 50.5}
+  public get $productsInBag() {
+    return this.productsInBag;
+  }
 
-  //   return myObject
-  // }
+  @Mutation
+  private SET_ALL(arrayProduct: Product[]) {
+    this.products = arrayProduct;
+  }
 
-  get $products(): number {
-    console.log("Hello World!");
+  @Mutation
+  private ADD_TO_BAG(product: Product) {
+    this.productsInBag.push(product);
+    localStorage.setItem("productsInBag", JSON.stringify(this.productsInBag));
+  }
 
-    return this.products
+  @Mutation
+  private REMOVE_FROM_BAG(product: Product) {
+    let updatedBag = this.productsInBag.filter(
+      (element) => element.id != product.id
+    );
+    this.productsInBag = updatedBag;
+    localStorage.setItem("productsInBag", JSON.stringify(this.productsInBag));
+  }
+
+  @Mutation
+  private LOAD_BAG(product: any) {
+    this.productsInBag = product;
+  }
+
+  @Action
+  public addToBag(product: Product) {
+    this.context.commit("ADD_TO_BAG", product);
+  }
+
+  @Action
+  public removeFromBag(product: Product) {
+    if (
+      confirm("Você tem certeza que quer remover esse produto do seu carrinho?")
+    ) {
+      this.context.commit("REMOVE_FROM_BAG", product);
+    }
+  }
+
+  @Action
+  public loadBag() {
+    if (localStorage.getItem("productsInBag") != null) {
+      this.context.commit(
+        "LOAD_BAG",
+        JSON.parse(localStorage.getItem("productsInBag") || "{}")
+      );
+    }
+  }
+
+  @Action
+  public async index() {
+    const products = await $axios
+      .get("/products")
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+
+    this.context.commit("SET_ALL", products);
   }
 }
