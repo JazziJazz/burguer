@@ -54,49 +54,13 @@
     </b-carousel>
 
     <section>
-      <h1>Hamburgueria Zona Leste</h1>
+      <h1>Zê Éle Burguer</h1>
       <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-        dolore provident quis ullam iusto voluptatum vel officia mollitia, ut
-        nulla veniam soluta nisi dolor laudantium sed harum nihil laboriosam
-        obcaecati. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Itaque officia non ducimus architecto. In, voluptatibus repellat,
-        placeat asperiores itaque saepe nulla rerum animi incidunt consequatur
-        dolore, quis neque labore sit.
+        A Zê Éle Burguer fundada no final de 2019 no ramo do delivery localizada na região leste no bairro da Vila Matilde na Cidade de São Paulo,
+        expecializada no Smahs Burguer levando experiencia e sabores dentro da sua casa.        
       </p>
 
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quia
-        tempore iste eius ut, dolorem dolore consectetur iure exercitationem
-        sapiente laudantium vero animi atque cum blanditiis fugit voluptate
-        enim? Fugit. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Consectetur voluptatibus aspernatur veritatis, corrupti dolorum
-        molestiae velit iusto et asperiores quas dicta officiis exercitationem
-        repellendus, assumenda dignissimos alias animi amet ipsa?
-      </p>
 
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quaerat
-        explicabo deleniti natus. Debitis necessitatibus inventore architecto
-        temporibus sit, qui blanditiis! Ullam quam iusto distinctio in vitae non
-        dignissimos fugit. Lorem ipsum dolor sit amet consectetur, adipisicing
-        elit. Quidem fugit blanditiis reprehenderit praesentium consequuntur
-        eligendi quam accusantium iusto illo? Accusantium amet libero quisquam
-        cupiditate ab ullam tenetur earum nostrum adipisci.
-      </p>
-
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui consequatur
-        animi accusamus quae laborum suscipit omnis, ad facilis praesentium id
-        culpa aperiam repudiandae voluptate voluptatibus fuga labore voluptas
-        adipisci minus. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Illo dignissimos iure veritatis consequuntur quae possimus suscipit,
-        ipsa fuga temporibus architecto quia! Molestias perferendis culpa illum.
-        Nisi explicabo provident ipsa inventore? Lorem ipsum dolor sit amet
-        consectetur, adipisicing elit. Possimus fugit beatae debitis dicta quae
-        expedita! Enim excepturi quos a illo quisquam natus perspiciatis
-        delectus? Exercitationem earum error officia ab reprehenderit!
-      </p>
     </section>
   </div>
 </template>
